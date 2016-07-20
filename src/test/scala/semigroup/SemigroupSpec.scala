@@ -1,3 +1,5 @@
+package semigroup
+
 import cats.Semigroup
 import cats.implicits._
 import org.scalatest.{Matchers, WordSpec}
