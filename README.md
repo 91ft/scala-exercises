@@ -15,3 +15,9 @@ Semigroup을 상속받은 것으로 combine과 교환법칙이 가능한 empty�
 // 교환법칙
 (combine(x, empty) == combine(empty, x) == x)
 ```
+
+### Functor
+map이란 함수를 가지고 있는 모든 타입이다.
+```
+def map[A, B](fa: F[A])(f: A => B): F[B]
+```
