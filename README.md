@@ -21,3 +21,12 @@ map이란 함수를 가지고 있는 모든 타입이다.
 ```
 def map[A, B](fa: F[A])(f: A => B): F[B]
 ```
+
+## Applicative
+Apply를 상속받은 것으로 타입을 F[A]로 반환하는 pure 함수를 제공한다.
+```
+def pure[A](x: A): F[A]
+```
+
+Semigroup[T]
+Functor[F[T]]
