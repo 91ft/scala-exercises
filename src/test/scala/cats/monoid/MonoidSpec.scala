@@ -1,4 +1,4 @@
-package monoid
+package cats.monoid
 
 import org.scalatest.{Matchers, WordSpec}
 
@@ -10,7 +10,7 @@ import cats.implicits._
   */
 class MonoidSpec extends WordSpec with Matchers {
 
-  "monoid" should {
+  "cats/monoid" should {
     "empty" in {
       Monoid[String].empty should be("")
     }

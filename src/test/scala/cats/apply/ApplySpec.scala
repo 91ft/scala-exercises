@@ -1,4 +1,4 @@
-package apply
+package cats.apply
 
 import org.scalatest.{Matchers, WordSpec}
 
@@ -10,7 +10,7 @@ import cats.implicits._
   */
 class ApplySpec extends WordSpec with Matchers {
 
-  "apply" should {
+  "cats/apply" should {
     val intToString: Int ⇒ String = _.toString
     val double: Int ⇒ Int = _ * 2
     val addTwo: Int ⇒ Int = _ + 2
@@ -53,7 +53,7 @@ class ApplySpec extends WordSpec with Matchers {
       Apply[List].tuple2(List(1, 2), List("a", "b")) should be(List((1, "a"), (1, "b"), (2, "a"), (2, "b")))
     }
 
-    "apply builder syntax" in {
+    "cats.apply builder syntax" in {
       val addArity2 = (a: Int, b: Int) ⇒ a + b
       val addArity3 = (a: Int, b: Int, c: Int) ⇒ a + b + c
 

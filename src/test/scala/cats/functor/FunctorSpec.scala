@@ -1,4 +1,4 @@
-package functor
+package cats.functor
 
 import org.scalatest.{Matchers, WordSpec}
 
@@ -10,7 +10,7 @@ import cats.implicits._
   */
 class FunctorSpec extends WordSpec with Matchers {
 
-  "functor" should {
+  "cats/functor" should {
     "option map " in {
       Functor[Option].map(Option("Hello"))(_.length) should be(Some(5))
       Functor[Option].map(None: Option[String])(_.length) should be(None)

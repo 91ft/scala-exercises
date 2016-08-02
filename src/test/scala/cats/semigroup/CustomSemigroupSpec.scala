@@ -1,4 +1,4 @@
-package semigroup
+package cats.semigroup
 
 import org.scalatest.{Matchers, WordSpec}
 
@@ -7,7 +7,7 @@ import org.scalatest.{Matchers, WordSpec}
   */
 class CustomSemigroupSpec extends WordSpec with Matchers {
 
-  "custom semigroup" in {
+  "custom cats.semigroup" in {
     import cats.Semigroup
 
     case class Foo(a : Int,  b: String)

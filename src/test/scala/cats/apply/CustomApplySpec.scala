@@ -1,4 +1,4 @@
-package apply
+package cats.apply
 
 import org.scalatest.{Matchers, WordSpec}
 
@@ -10,7 +10,7 @@ import cats.implicits._
   */
 class CustomApplySpec extends WordSpec with Matchers {
 
-  "apply" should {
+  "cats/apply" should {
     "test" in {
       implicit val listApplyInstance = new Apply[List] {
         override def ap[A, B](ff: List[(A) => B])(fa: List[A]): List[B] = fa.flatMap(a => ff.map(f => f(a)))

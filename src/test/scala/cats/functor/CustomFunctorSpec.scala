@@ -1,4 +1,4 @@
-package functor
+package cats.functor
 
 import org.scalatest.{Matchers, WordSpec}
 
@@ -10,7 +10,7 @@ import cats.implicits._
   */
 class CustomFunctorSpec extends WordSpec with Matchers {
 
-  "custom functor" should {
+  "custom cats.functor" should {
 
     "option" in {
       implicit val optionFunctor = new Functor[Option] {

@@ -1,4 +1,4 @@
-package applicative
+package cats.applicative
 
 import org.scalatest.{Matchers, WordSpec}
 

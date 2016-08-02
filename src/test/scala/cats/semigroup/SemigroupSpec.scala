@@ -1,4 +1,4 @@
-package semigroup
+package cats.semigroup
 
 import cats.Semigroup
 import cats.implicits._
@@ -9,7 +9,7 @@ import org.scalatest.{Matchers, WordSpec}
   */
 class SemigroupSpec extends WordSpec with Matchers {
 
-  "semigroup" should {
+  "cats/semigroup" should {
     "combine (a, b)" in {
       Semigroup[Int].combine(1, 2) should be(3)
       Semigroup[List[Int]].combine(List(1, 2, 3), List(4, 5, 6)) should be(List(1, 2, 3, 4, 5, 6))
