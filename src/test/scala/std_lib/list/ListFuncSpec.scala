@@ -10,7 +10,7 @@ import scala.collection.mutable
 class ListFuncSpec extends WordSpec with Matchers {
 
   "리스트" should {
-    "생성하다 1" in {
+    "생성하다" in {
       // Java 버전
       var jList = new mutable.ListBuffer[Int]()
       jList.append(1)
@@ -26,7 +26,7 @@ class ListFuncSpec extends WordSpec with Matchers {
       _0To10 shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     }
 
-    "생성하다 2" in {
+    "변형하다" in {
       val list = List(1, 2, 3, 4, 5)
 
       val firstAdd : List[Int] = ???
