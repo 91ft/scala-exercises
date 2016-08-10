@@ -52,3 +52,33 @@ val result2 = func(10)
 ```
 - num을 자유변수(free variable)라고 부른다.
 - 클로저란 자유변수들을 capture해서 closing한다는 의미에서 따온말.
+
+## List
+스칼라의 List는 기본적으로 immutable. (변경할 수 없다)
+```scala
+val list1 = List.apply(1,2,3)
+val list2 = List(1,2,3)
+```
+접근하기
+```scala
+val list = List(1,2,3)
+list.headOption
+
+// head, tail
+val matched = list match {
+  case head :: tail => Some(head)
+  case Nil => None
+}
+```
+변형, 필터링하기
+```scala
+val list = List(1,2,3)
+val mapped = list.map(i => i.toString)
+val filtered = list.filter(i => i % 2 == 0)
+```
+reduce, fold
+```scala
+val list = List(1,2,3)
+val reduce = list.reduce((a, b) => a + b)
+val fold = list.fold(10)((a, b) => a + b)
+```

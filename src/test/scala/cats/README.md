@@ -1,5 +1,7 @@
 # Scala Exercises Cat
 
+[typeclassopedia.png]
+
 ### Semigroup
 Semigroup은 결합법칙이 가능한 combine이란 함수를 가지고 있는 모든 타입이다.
 ```

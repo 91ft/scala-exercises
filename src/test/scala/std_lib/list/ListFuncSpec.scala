@@ -10,7 +10,7 @@ import scala.collection.mutable
 class ListFuncSpec extends WordSpec with Matchers {
 
   "리스트" should {
-    "생성하다" in {
+    "생성하다 1" in {
       // Java 버전
       var jList = new mutable.ListBuffer[Int]()
       jList.append(1)
@@ -19,11 +19,27 @@ class ListFuncSpec extends WordSpec with Matchers {
       jList shouldBe List(1, 2, 3)
 
       // Scala 버전
-      val slist = List(1, 2, 3)
+      val slist : List[Int] = ???
       slist shouldBe List(1, 2, 3)
+
+      val _0To10 : List[Int] = ???
+      _0To10 shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     }
 
-    "접근하다" in {
+    "생성하다 2" in {
+      val list = List(1, 2, 3, 4, 5)
+
+      val firstAdd : List[Int] = ???
+      firstAdd shouldBe List(0, 1, 2, 3, 4, 5)
+
+      val lastAdd : List[Int] = ???
+      lastAdd shouldBe List(1, 2, 3, 4, 5, 6)
+
+      val lastAddList : List[Int] = ???
+      lastAddList shouldBe List(1, 2, 3, 4, 5, 6, 7)
+    }
+
+    "접근하다 1" in {
       val list = List(1, 2, 3, 4, 5)
 
       val secondItem : Int = ???
@@ -38,6 +54,32 @@ class ListFuncSpec extends WordSpec with Matchers {
       val exceptFirst : List[Int] = ???
       exceptFirst shouldBe List(2, 3, 4, 5)
 
+      val exceptLast : List[Int] = ???
+      exceptLast shouldBe List(1, 2, 3, 4)
+    }
+
+    "접근하다 2" in {
+      val list = List(1, 2, 3, 4, 5)
+
+      val takeList : List[Int] = ???
+      takeList shouldBe List(1, 2)
+
+      val dropList : List[Int] = ???
+      dropList shouldBe List(3, 4)
+
+      val firstItem : Option[Int] = ???
+      firstItem shouldBe Some(2)
+
+      val secondItem : Option[Int] = ???
+      secondItem shouldBe Some(2)
+
+      val lastItem : Option[Int] = ???
+      lastItem shouldBe Some(2)
+
+      val exceptFirst : List[Int] = ???
+      exceptFirst shouldBe List(2, 3, 4, 5)
+
+      // 이렇게 사용할 일은 없지만..
       val exceptLast : List[Int] = ???
       exceptLast shouldBe List(1, 2, 3, 4)
     }
@@ -78,17 +120,5 @@ class ListFuncSpec extends WordSpec with Matchers {
       max shouldBe 5
     }
 
-    "for-yield" in {
-      val list = List(1, 2, 3, 4, 5)
-
-      // Java 버전
-      // for (int i = 0 ; i < list.size() ; i++) print(list.get(i))
-      // for (int item : list) print(list.get(i))
-
-      // Scala 버전
-      for { i <- (0 until list.size) } yield print(list(i))
-      for { item <- list } yield print(item)
-      list.map(item => print(item))
-    }
   }
 }
