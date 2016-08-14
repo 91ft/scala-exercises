@@ -108,17 +108,20 @@ map("a")
 값은 tuple2이며, ->는 값을 받아서 tuple2로 반환하는 함수다
 
 ## Set
+스칼라의 Set
 ```scala
 val set = Set("a", 1, true, "a")
 set.size should be(3)
 set.contains("a")
 set("a")
 ```
+값 추가, 삭제
 ```scala
 val set = Set(1,2,3)
 set + (3,4,5)
 set - (2,3,4)
 ```
+intersect, union, subsetOf, diff
 ```scala
 val set1 = Set(1,2,3)
 val set2 = Set(2,3,4,5)
