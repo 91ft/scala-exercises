@@ -82,3 +82,50 @@ val list = List(1,2,3)
 val reduce = list.reduce((a, b) => a + b)
 val fold = list.fold(10)((a, b) => a + b)
 ```
+
+## Map
+스칼라의 Map
+```scala
+val map = Map("a" -> 1, "b" -> 2, "c" -> 2, "c" -> 3)
+map.size // 3
+map.keys // Set("a", "b", "c")
+map.values // MapLike(1, 2, 3)
+map("a")
+map.get("a")
+map.getOrElse("a")
+```
+값 추가, 삭제
+```scala
+val map = Map("a" -> 1, "b" -> 2, "c" -> 3)
+map + ("d" -> 4, "e" -> 5)
+map - ("b", "c")
+```
+키와 값이 여러 타입을 가질수 있다.
+```scala
+val map = Map("a" -> 1, 2 -> "b", true -> 3)
+map("a")
+```
+값은 tuple2이며, ->는 값을 받아서 tuple2로 반환하는 함수다
+
+## Set
+```scala
+val set = Set("a", 1, true, "a")
+set.size should be(3)
+set.contains("a")
+set("a")
+```
+```scala
+val set = Set(1,2,3)
+set + (3,4,5)
+set - (2,3,4)
+```
+```scala
+val set1 = Set(1,2,3)
+val set2 = Set(2,3,4,5)
+
+set1 intersect set2 // Set(2, 3)
+set1 union set2 // Set(5, 1, 2, 3, 4)
+set1 subsetOf set2 // false
+(set1 - 1) subsetOf set2 // true
+set2 diff set1 // Set(4, 5)
+```
