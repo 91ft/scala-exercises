@@ -7,4 +7,4 @@ val newValFunc = new Function1[Int, Int] {
 }
 
 //def defNoting: Int => Boolean = ???
-//val valNoting : Int => Boolean = ???
+val valNoting : Int => Boolean = ???

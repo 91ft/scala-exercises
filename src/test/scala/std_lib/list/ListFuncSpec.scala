@@ -2,6 +2,7 @@ package std_lib.list
 
 import org.scalatest.{Matchers, WordSpec}
 
+import scala.collection.immutable.Range.Inclusive
 import scala.collection.mutable
 
 /**
@@ -19,104 +20,90 @@ class ListFuncSpec extends WordSpec with Matchers {
       jList shouldBe List(1, 2, 3)
 
       // Scala 버전
-      val slist : List[Int] = ???
+      val slist : List[Int] = List(1,2,3) // == List.apply(1,2,3)
       slist shouldBe List(1, 2, 3)
 
-      val _0To10 : List[Int] = ???
-      _0To10 shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+      val _0To10 = (0 to 10)
+      _0To10 shouldBe List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     }
 
     "변형하다" in {
       val list = List(1, 2, 3, 4, 5)
 
-      val firstAdd : List[Int] = ???
+      val firstAdd : List[Int] = 0 :: list // 0 +: list
       firstAdd shouldBe List(0, 1, 2, 3, 4, 5)
 
-      val lastAdd : List[Int] = ???
+      val lastAdd : List[Int] = list :+ 6
       lastAdd shouldBe List(1, 2, 3, 4, 5, 6)
 
-      val lastAddList : List[Int] = ???
+      val lastAddList : List[Int] = list ::: List(6,7)
       lastAddList shouldBe List(1, 2, 3, 4, 5, 6, 7)
     }
 
     "접근하다 1" in {
-      val list = List(1, 2, 3, 4, 5)
+      val list = List()
 
-      val secondItem : Int = ???
+      val secondItem : Int = list(1) // list.apply(1)
       secondItem shouldBe 2
 
-      val firstItem : Int = ???
+      val firstItem : Int = list.head // list.tail
       firstItem shouldBe 1
 
-      val lastItem : Int = ???
+      val lastItem : Int = list.last // list.init
       lastItem shouldBe 5
 
-      val exceptFirst : List[Int] = ???
+      val exceptFirst : List[Int] = list.tail
       exceptFirst shouldBe List(2, 3, 4, 5)
 
-      val exceptLast : List[Int] = ???
+      val exceptLast : List[Int] = list.init
       exceptLast shouldBe List(1, 2, 3, 4)
     }
 
     "접근하다 2" in {
-      val list = List(1, 2, 3, 4, 5)
+      val list = List(1,2,3,4)
 
-      val takeList : List[Int] = ???
+      val takeList : List[Int] = list.take(2)
       takeList shouldBe List(1, 2)
 
-      val dropList : List[Int] = ???
+      val dropList : List[Int] = list.drop(2)
       dropList shouldBe List(3, 4)
 
-      val firstItem : Option[Int] = ???
-      firstItem shouldBe Some(2)
+      val firstItem : Option[Int] = list.headOption
+      firstItem shouldBe Some(1)
+      //Option = Some, None
 
-      val secondItem : Option[Int] = ???
-      secondItem shouldBe Some(2)
+      val thirdItem : Option[Int] = list.drop(2).headOption
+      thirdItem shouldBe Some(3)
 
-      val lastItem : Option[Int] = ???
-      lastItem shouldBe Some(2)
-
-      val exceptFirst : List[Int] = ???
-      exceptFirst shouldBe List(2, 3, 4, 5)
-
-      // 이렇게 사용할 일은 없지만..
-      val exceptLast : List[Int] = ???
-      exceptLast shouldBe List(1, 2, 3, 4)
+      val lastItem : Option[Int] = list.drop(3).headOption
+      lastItem shouldBe Some(4)
     }
 
     "필터링하다" in {
       val list = List(1, 2, 3, 4, 5)
 
-      val even : List[Int] = ???
+      val even : List[Int] = list.filter { i => i % 2 == 0 }
       even shouldBe List(2, 4)
 
-      val odd : List[Int] = ???
+      val odd : List[Int] = list.filterNot { i => i % 2 == 0 }
       odd shouldBe List(1, 3, 5)
     }
 
     "변형하다" in {
       val list = List(1, 2, 3, 4, 5)
 
-      val doubled : List[Int] = ???
+      val doubled : List[Int] = list.map(i => i * 2)
       doubled shouldBe List(2, 4, 6, 8, 10)
-
-      val added6 : List[Int] = ???
-      added6 shouldBe List(1, 2, 3, 4, 5, 6)
-
-      val added0 : List[Int] = ???
-      added0 shouldBe List(0, 1, 2, 3, 4, 5)
-
-      val addedList : List[Int] = ???
-      addedList shouldBe List(1, 2, 3, 4, 5, 6, 7, 8)
     }
 
     "sum, max" in {
       val list = List(1, 2, 3, 4, 5)
 
-      val sum : Int = ???
+      val sum : Int = list.reduce((sum, item) => sum + item)
+      // reduceLeft, reduceRight
       sum shouldBe 15
 
-      val max : Int = ???
+      val max : Int = list.reduce((max, item) => Math.max(max, item))
       max shouldBe 5
     }
 

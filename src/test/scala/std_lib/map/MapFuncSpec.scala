@@ -2,12 +2,33 @@ package std_lib.map
 
 import org.scalatest.{Matchers, WordSpec}
 
+import scala.collection.mutable
+
 /**
  * Created by karellen on 2016. 8. 14..
  */
 class MapFuncSpec extends WordSpec with Matchers {
 
   "map" should {
+
+    "java style" in {
+      val map = new mutable.HashMap[String, Int]()
+      map.put("a", 1)
+      map.put("b", 2)
+
+      map.get("a") shouldBe(Some(1))
+      map.foreach(m => print(m))
+    }
+
+    "custom Map" in {
+      /*
+      object MyMap {
+      }
+
+      val myMap = MyMap(???)
+      myMap.get("a") shouldBe(Some(1))
+      */
+    }
 
     "basic" in {
       val map = Map("a" -> 1, "b" -> 2, "c" -> 2, "c" -> 3)
