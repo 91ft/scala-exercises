@@ -11,51 +11,51 @@ class MapSpec extends WordSpec with Matchers {
 
     "init" in {
       val myMap = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "MI" → "Michigan")
-      myMap.size should be(3)
+      myMap.size should be(???)
     }
 
     "add" in {
       val myMap = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "MI" → "Michigan")
       val aNewMap = myMap + ("IL" → "Illinois")
-      aNewMap.contains("IL") should be(true)
+      aNewMap.contains("IL") should be(???)
     }
 
     "head, last" in {
       val myMap = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "MI" → "Michigan")
 
       val mapValues = myMap.values
-      mapValues.size should be(3)
-      mapValues.head should be("Michigan")
+      mapValues.size should be(???)
+      mapValues.head should be(???)
 
       val lastElement = mapValues.last
-      lastElement should be("Wisconsin")
+      lastElement should be(???)
     }
 
     "mixed type" in {
       val myMap = Map("Ann Arbor" → "MI", 49931 → "MI")
-      myMap("Ann Arbor") should be("MI")
-      myMap(49931) should be("MI")
+      myMap("Ann Arbor") should be(???)
+      myMap(49931) should be(???)
     }
 
     "default value" in {
       val myMap = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "IA" → "Iowa")
       intercept[NoSuchElementException] { myMap("TX") }
-      myMap.getOrElse("TX", "missing data") should be("missing data")
+      myMap.getOrElse("TX", "missing data") should be(???)
 
       val myMap2 = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "IA" → "Iowa") withDefaultValue "missing data"
-      myMap2("TX") should be("missing data")
+      myMap2("TX") should be(???)
     }
 
     "remove" in {
       val myMap = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "IA" → "Iowa")
       val aNewMap = myMap -- List("MI", "OH")
 
-      aNewMap.contains("MI") should be(false)
-      myMap.contains("MI") should be(true)
+      aNewMap.contains("MI") should be(???)
+      myMap.contains("MI") should be(???)
 
-      aNewMap.contains("WI") should be(true)
-      aNewMap.size should be(2)
-      myMap.size should be(4)
+      aNewMap.contains("WI") should be(???)
+      aNewMap.size should be(???)
+      myMap.size should be(???)
     }
   }
 }
