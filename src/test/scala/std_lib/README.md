@@ -132,3 +132,63 @@ set1 subsetOf set2 // false
 (set1 - 1) subsetOf set2 // true
 set2 diff set1 // Set(4, 5)
 ```
+
+## Pattern Matching
+스칼라에는 자바의 switch 문과 비슷하지만, 더 강력한 match - case 가 있다.
+
+* 자바의 switch - case
+```
+String result = null;
+switch (num) {
+    case 1 : result = "one"; break;
+    case 2 : result = "two"; break;
+    default : result = "other";
+}
+```
+* 스칼라의 match
+```
+val result = num match {
+    case 1 => "one"
+    case 2 => "two"
+    case _ => "other" // 이게 없다면 MatchError 발생
+```
+* 특징
+fall-through 문제가 사라짐
+```
+String result = null;
+switch (num) {
+    case 1 : result = "one"; break;
+    case 2 : result = "two";
+    default : result = "other";
+}
+// num = 2 인 경우 결과값은?
+```
+_는 default를 대체하는 것이 아니다.
+```
+val result = num match {
+    case 1 => "one"
+    case 2 => "two"
+    case a : Int  => "other" // case _ : Int => "other" // case _ => "other"
+}
+```
+: 가 => 로 변경됨
+- :, ->, =>, <- 다 헛갈리지만... 잘 생각해보면 함수 선언모양과 비슷하다.
+- case 한줄 한줄이 다 함수이다.
+```
+val result = num match {
+    case n : String => "string"
+    ...
+}
+// 함수선언 : (name : String) => s"${name}님"
+```
+* 특징
+1. 맞는 case가 없는 경우 에러가 발생한다.
+1. break가 없어도 다음 case로 넘어가지 않는다.
+1. _는 default 값을 의미하는 것이 아니다. 
+1. case 한줄 한줄이 다 함수이다.
+1. match는 표현식이다.
+```
+case 문은 함수다.
+- def func(Int) = { ... } (x)
+- def func(n : Int) = { ... } (o)
+```
