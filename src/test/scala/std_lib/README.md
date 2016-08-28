@@ -192,3 +192,30 @@ case 문은 함수다.
 - def func(Int) = { ... } (x)
 - def func(n : Int) = { ... } (o)
 ```
+
+# case class
+case 수식자가 붙은 클래스. 몇 가지 편리한 기능이 자동으로 제공된다.
+```
+case class User(id : Int, name : String)
+```
+1. 같은 이름의 팩토리 메소드가 있다.
+```
+val user = User(1, "박보검")
+```
+2. 클래스 파라미터에 암시적으로 val 접두어를 붙인다.
+```
+user.name // 박보검
+```
+3. toString, hashCode, equals의 자연스러운 구현을 추가한다
+```
+val user1 = User(1, "박보검")
+val user2 = User(1, "박보검")
+
+user1 == user2
+```
+4. copy 메소드를 추가한다.
+```
+val user = User(1, "박보검", "M", "010-1234-5678")
+val copiedUser = user.copy(tel = "010-1234-5679")
+```
+5. 패턴 매치를 지원한다.
