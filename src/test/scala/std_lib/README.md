@@ -187,7 +187,7 @@ val result = num match {
 1. _는 default 값을 의미하는 것이 아니다. 
 1. case 한줄 한줄이 다 함수이다.
 1. match는 표현식이다.
-```
+```scala
 case 문은 함수다.
 - def func(Int) = { ... } (x)
 - def func(n : Int) = { ... } (o)
@@ -195,7 +195,7 @@ case 문은 함수다.
 
 # case class
 case 수식자가 붙은 클래스. 몇 가지 편리한 기능이 자동으로 제공된다.
-```
+```scala
 case class User(id : Int, name : String)
 ```
 1. 같은 이름의 팩토리 메소드가 있다.
@@ -219,3 +219,21 @@ val user = User(1, "박보검", "M", "010-1234-5678")
 val copiedUser = user.copy(tel = "010-1234-5679")
 ```
 5. 패턴 매치를 지원한다.
+
+# Partially Applied Function
+함수의 인자중 일부를 적용한 새로운 함수를 생성할 수 있다.
+```scala
+def sum(a: Int, b: Int) = a + b 
+def addTwo = sum(2, _ : Int)
+```
+curried 함수 형태
+```
+def sum(a: Int, b: Int) = a + b
+sum(1, _)
+
+def sum(a: Int)(b: Int) = a + b
+sum(1)
+
+def sum(a: Int) = (b : Int) => a + b
+sum(1)
+```
