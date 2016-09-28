@@ -226,14 +226,11 @@ val copiedUser = user.copy(tel = "010-1234-5679")
 def sum(a: Int, b: Int) = a + b 
 def addTwo = sum(2, _ : Int)
 ```
-curried 함수 형태
+
 ```
-def sum(a: Int, b: Int) = a + b
-sum(1, _)
+def sum1(a: Int, b: Int) = a + b
+def sum2(a: Int)(b: Int) = a + b
+def sum3(a: Int) = (b : Int) => a + b
 
-def sum(a: Int)(b: Int) = a + b
-sum(1)
-
-def sum(a: Int) = (b : Int) => a + b
-sum(1)
+// sum1(1) == sum2(1) == sum3(1)
 ```

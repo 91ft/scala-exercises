@@ -38,6 +38,16 @@ class PartiallyAppliedFunctionSpec extends WordSpec with Matchers {
       doubled3(5) shouldBe 10
     }
 
+    "curried 2" in {
+      def sum1(a: Int, b: Int) = a + b
+      def sum2(a: Int)(b: Int) = a + b
+      def sum3(a: Int) = (b : Int) => a + b
+
+      val n1 = sum1(1, _)
+      val n2 = sum2(1)
+      val n3 = sum3(1)
+    }
+
     "applyList" in {
       // 응용 : 함수를 파라미터로
       def applyList(func: (Int) => (Int))(list: List[Int]) : List[Int] = ???
@@ -48,40 +58,5 @@ class PartiallyAppliedFunctionSpec extends WordSpec with Matchers {
 
       doubledList(List(1,2,3)) shouldBe List(2,4,6)
     }
-
-    "paging" in {
-      // 핫딜을 10개 가져오려고 했으나 9개 밖에 안된다
-      val hotdeals : List[Item] = getHotdeal("타입", "정상", 10)
-      // 모자란 개수를 더 가져온다
-      val add_hotdeals = getHotdeal("타입", "정상", 10 - hotdeals.size)
-      // 합쳐서 반환한다
-      val sumHotdeals = hotdeals ::: add_hotdeals
-      sumHotdeals.size shouldBe 10
-
-      // 상품을 10개 가져오려고 했으나 9개 밖에 안된다
-      val brandItems : List[Item] = getBrandItem(true, "정상", 10)
-      // 모자란 개수를 더 가져온다
-      val add_brandItems = getBrandItem(true, "정상", 10 - brandItems.size)
-      // 합쳐서 반환한다
-      val sumBrandItems = brandItems ::: add_brandItems
-      sumBrandItems.size shouldBe 10
-    }
-
-    "auto paging" in {
-      // n만큼 상품 불러오기
-      def autoPaging[T](func : Int => List[T], count : Int) = {
-        val list1 = func(count)
-        val list2 = func(count - list1.size)
-        list1 ::: list2
-      }
-
-      val pagingHotdealFunction = ???
-      val result : List[Item] = ???
-      result.size shouldBe 10
-    }
-
-    case class Item(id : Int, name : String)
-    def getHotdeal(templateType : String, status: String, n : Int) = (0 until n).filterNot(_ == 2).map(i => Item(i, s"${i} 상품명")).toList
-    def getBrandItem(special : Boolean, status : String, n : Int) = (0 until n).filterNot(_ == 3).map(i => Item(i, s"${i} 상품명")).toList
   }
 }
