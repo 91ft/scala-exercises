@@ -187,7 +187,7 @@ val result = num match {
 1. _는 default 값을 의미하는 것이 아니다. 
 1. case 한줄 한줄이 다 함수이다.
 1. match는 표현식이다.
-```scala
+```
 case 문은 함수다.
 - def func(Int) = { ... } (x)
 - def func(n : Int) = { ... } (o)
@@ -233,4 +233,39 @@ def sum2(a: Int)(b: Int) = a + b
 def sum3(a: Int) = (b : Int) => a + b
 
 // sum1(1) == sum2(1) == sum3(1)
+```
+
+# Partial Function
+Partial Function : 부분함수
+Partially Applied Function : 파라미터 중 부분만 적용된 새로운 함수
+Partial Function ≠ Partially Applied Function
+* 부분함수란?
+* 일부 입력에 대해서는 정의되지 않는 함수
+* = 일부 입력에 대해 동작하지 않는 함수. 일부 입력에 대해 끝나지 않는 함수.
+* 부분함수의 예
+```scala
+def max(list : List[Int]) = {
+  if (list.isEmpty) throw ArithmeticException
+  list.max
+}
+```
+* 예상치 않는 시점에 오류가 발생할 수 있으므로 가능한 완전함수로 만들어서 사용하는 것이 좋다
+```scala
+def max(list : List[Int]) : Option[Int] = {
+  if (list.isEmpty) None
+  Some(list.max)
+}
+```
+* 어쩔 수 없이 부분함수를 사용해야 할 때 : 정해진 프레임워크를 사용한다
+```scala
+val func1 = new PartialFunction[List[Int], Int] {
+  def isDefinedAt(list: List[Int]) = list.nonEmpty
+  def apply(list: List[Int]) = list.sum / list.length
+}
+```
+* 축약하면
+```scala
+val func2: PartialFunction[List[Int], Int] = { 
+  case list if list.nonEmpty => list.sum / list.length 
+}
 ```

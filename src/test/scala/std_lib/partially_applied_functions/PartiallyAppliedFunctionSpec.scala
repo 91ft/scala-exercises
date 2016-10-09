@@ -42,10 +42,6 @@ class PartiallyAppliedFunctionSpec extends WordSpec with Matchers {
       def sum1(a: Int, b: Int) = a + b
       def sum2(a: Int)(b: Int) = a + b
       def sum3(a: Int) = (b : Int) => a + b
-
-      val n1 = sum1(1, _)
-      val n2 = sum2(1)
-      val n3 = sum3(1)
     }
 
     "applyList" in {

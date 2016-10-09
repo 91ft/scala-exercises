@@ -7,9 +7,9 @@ import java.util.Date
   */
 
 // id, itemId, releasedAt이 있는 Page
-class Page
+case class Page(a : Int, b: Int, c : Date)
 // id, name, imageUrl이 있는 Item
-class Item
+case class Item(a : Int, str1 : String, str2 : String)
 
 class MockPageService {
 
