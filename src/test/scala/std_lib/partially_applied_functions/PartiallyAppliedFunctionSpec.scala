@@ -12,29 +12,31 @@ class PartiallyAppliedFunctionSpec extends WordSpec with Matchers {
     "basic" in {
       def sum(a: Int, b: Int) = a + b
 
-      val add1 = sum(1, _ : Int)
+      val add1: (Int) => Int = sum(1, _ : Int)
+      // def add1(b: Int) = 1 + b
       add1(5) shouldBe 6
 
       // 곱하기
-      def multiply(a: Int, b: Int) : Int = ???
+      def multiply(a: Int, b: Int) : Int = a * b
+      // multiply(2, 5) = 10
 
-      val doubled : Int => Int = ???
-      doubled(5) shouldBe 10
+      val doubled: (Int) => Int = multiply(2, _ : Int)
+      doubled(6) shouldBe 12
     }
 
     "curried" in {
       // _ 대신에...
-      def multiply2(a: Int)(b: Int) : Int = ???
+      def multiply2(a: Int)(b: Int) : Int = a * b
 
-      val doubled2 : Int => Int = ???
+      val doubled2: (Int) => Int = multiply2(2)
       doubled2(5) shouldBe 10
     }
 
     "curried 2" in {
       // _ 대신에...
-      def multiply3(a: Int) = (b: Int) => ???
+      def multiply3(a: Int) = (b: Int) => a * b
 
-      val doubled3 : Int => Int = ???
+      val doubled3 : Int => Int = multiply3(2)
       doubled3(5) shouldBe 10
     }
 
@@ -42,15 +44,22 @@ class PartiallyAppliedFunctionSpec extends WordSpec with Matchers {
       def sum1(a: Int, b: Int) = a + b
       def sum2(a: Int)(b: Int) = a + b
       def sum3(a: Int) = (b : Int) => a + b
+
+      val n1: (Int) => Int = sum1(1, _ : Int)
+      val n2: (Int) => Int = sum2(1)
+      val n3: (Int) => Int = sum3(1)
     }
 
     "applyList" in {
       // 응용 : 함수를 파라미터로
-      def applyList(func: (Int) => (Int))(list: List[Int]) : List[Int] = ???
+      // list = 1,2,3,4,5
+      // func = * 2
+      def applyList(func: (Int) => (Int))(list: List[Int]) : List[Int] =
+      list.map(func)
 
       // applyList를 활용해서 리스트의 모든 값을 2배로 늘리는 함수
       // List(1,2,3)를 받으면 List(2,4,6)를 리턴
-      val doubledList : (List[Int] => List[Int]) = ???
+      val doubledList: (List[Int]) => List[Int] = applyList(_ * 2)
 
       doubledList(List(1,2,3)) shouldBe List(2,4,6)
     }

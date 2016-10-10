@@ -5,7 +5,7 @@ package std_lib.partial_functions;
  */
 public class PartialFunction2 {
 
-    class isSmall implements MyIfFunc {
+    class isSmall {
         public boolean check(int num) {
             return num < 10;
         }
@@ -14,7 +14,7 @@ public class PartialFunction2 {
         }
     }
 
-    class isBigger implements MyIfFunc {
+    class isBigger {
         public boolean check(int num) {
             return num > 10;
         }
@@ -23,13 +23,8 @@ public class PartialFunction2 {
         }
     }
 
-    interface MyIfFunc {
-        boolean check(int num);
-        String get();
-    }
-
     public String get(int num) {
-        //isSmall.get(num).else(isBigger(num))
+        //isSmall(num).else(isBigger(num))
         return null;
     }
 

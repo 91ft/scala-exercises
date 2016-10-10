@@ -2,7 +2,8 @@
 object HotdealService {
   def get(count : Int) = {
     val hotdeals = getHotdeal("타입", "정상", count)
-    hotdeals
+    val add = getHotdeal("타입", "정상", count - hotdeals.size)
+    hotdeals ::: add
   }
 }
 
@@ -10,7 +11,8 @@ object HotdealService {
 object BrandService {
   def get(count : Int) = {
     val brandItems = getBrandItem(true, "정상", count)
-    brandItems
+    val add = getBrandItem(true, "정상", count - brandItems.size)
+    brandItems ::: add
   }
 }
 
@@ -25,11 +27,23 @@ items.size
   * parially applied function을 적용해서 자동으로 모자란 만큼 가져오는 기능
   */
 object AutoHotdealService {
-  def get(count : Int) : List[Item] = ???
+  def get(count : Int) : List[Item] =
+    getMore(getHotdeal("타입", "정상", _ : Int), count)
 }
+
+object AutoBrandService {
+  def get(count : Int) = {
+    val newFunc = getBrandItem(true, "정상", _ : Int)
+    getMore(newFunc, count)
+  }
+}
+
+val list2 = AutoBrandService.get(10)
+list2.size
 
 val hotdeals2 = AutoHotdealService.get(10)
 hotdeals2.size
+
 
 def getMore[T](func : Int => List[T], count : Int) = {
   val list1 = func(count)
