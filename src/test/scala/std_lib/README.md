@@ -237,8 +237,11 @@ def sum3(a: Int) = (b : Int) => a + b
 
 # Partial Function
 Partial Function : 부분함수
+
 Partially Applied Function : 파라미터 중 부분만 적용된 새로운 함수
+
 Partial Function ≠ Partially Applied Function
+
 * 부분함수란?
 * 일부 입력에 대해서는 정의되지 않는 함수
 * = 일부 입력에 대해 동작하지 않는 함수. 일부 입력에 대해 끝나지 않는 함수.
