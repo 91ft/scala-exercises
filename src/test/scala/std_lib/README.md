@@ -40,7 +40,7 @@ val valNoting : Int => Boolean = ???
 ```
 클로저
 - 함수 리터럴로 실행시점에 만들어낸 함수 값(객체)
-```scala
+```
 var num = 1
 
 def func = (x: Int) => x + num // x + 1
@@ -271,4 +271,19 @@ val func1 = new PartialFunction[List[Int], Int] {
 val func2: PartialFunction[List[Int], Int] = { 
   case list if list.nonEmpty => list.sum / list.length 
 }
+```
+
+# for
+Java vs Scala
+```
+List<Int> list = new LinkedList<Int>();
+list.add(1);
+list.add(2);
+list.add(3);
+
+List<Int> double = new LinkedList<Int>();
+for (num : list) {
+    double.add(num * num);
+}
+// 1,2,3 => 1,4,9
 ```
