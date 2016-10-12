@@ -276,14 +276,103 @@ val func2: PartialFunction[List[Int], Int] = {
 # for
 Java vs Scala
 ```
-List<Int> list = new LinkedList<Int>();
+// 1,2,3 => 1,4,9
+
+List<Integer> list = new LinkedList<Integer>();
 list.add(1);
 list.add(2);
 list.add(3);
 
-List<Int> double = new LinkedList<Int>();
-for (num : list) {
-    double.add(num * num);
+List<Integer> doubled = new LinkedList<Integer>();
+for (Integer num : list) {
+    doubled.add(num * num);
 }
-// 1,2,3 => 1,4,9
+```
+Scala map
+```
+// map
+val list = List(1,2,3)
+val doubled = list.map(num => num * num)
+```
+Scala for
+```
+// for
+val list = List(1,2,3)
+
+for {
+    num <- list
+} yield num * num
+```
+
+#### Java : List, Option, Future
+* List
+```
+for (Integer num : list) {
+  // 여기서 뭔가 처리
+}
+```
+* Option => 값이 없을 수 있다
+```
+if (num != null) {
+  // 여기서 뭔가 처리
+}
+```
+* Future
+```
+FutureTask<String> future =
+new FutureTask<String>(new Callable<String>() {
+    public String call() {
+        return searcher.search(target);
+    }}
+);
+executor.execute(future);
+```
+
+#### Scala : List, Option, Future
+* List
+```
+list.map(num => /* 여기서 뭔가 처리 */)
+```
+* Option => 값이 없을 수 있다
+```
+optionValue.map(num => /* 여기서 뭔가 처리 */)
+```
+* Future
+```
+futureValue.map(num => /* 여기서 뭔가 처리 */)
+```
+
+#### Java
+Future로 넘어오는 값이 null일 수도 있는 List값인 경우 처리
+```
+FutureTask<String> future =
+new FutureTask<List>(new Callable<List>() {
+    public String call() {
+        if (result != null) {
+            for (String item : list) {
+                // 여기서 뭔가 처리
+            }
+        }
+        return ...
+    }}
+);
+executor.execute(future);
+
+```
+
+#### Scala
+```
+val something : Future[Option[List[String]]] = ...
+
+something.map(optionResult => 
+    optionResult.map(listResult => 
+        listResult.map(item => /* 여기서 뭔가 처리 */)))
+```
+for
+```
+val ressult = for {
+    optionResult <- something
+    listResult <- optionResult
+    item <- listResult
+} yield /* 여기서 뭔가 처리 */
 ```
