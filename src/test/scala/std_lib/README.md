@@ -328,6 +328,30 @@ new FutureTask<String>(new Callable<String>() {
 executor.execute(future);
 ```
 
+#### Scala (Scala지만 Java처럼 짠다면...): List, Option, Future
+* List
+```
+val first = list(0)
+val second = list(1)
+```
+* Option => 값이 없을 수 있다
+```
+val someValue = optionValue.getOption()
+if (someValue != None) {
+    /* 여기서 뭔가 처리 */
+}
+
+optionValue.getOption() match {
+    case Some => /* 여기서 뭔가 처리 */
+    case None => /* 여기서 뭔가 처리 */
+}
+```
+* Future
+```
+val result = await { futureValue }
+/* 여기서 뭔가 처리 */
+```
+
 #### Scala : List, Option, Future
 * List
 ```
